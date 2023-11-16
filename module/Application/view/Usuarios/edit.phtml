@@ -1,0 +1,22 @@
+<div class="jumbotron">
+    <h1><span class="zf-green">Edit usuario id: <?= $usuarioId ?></span></h1>
+    <?php
+        $usuarioForm->setAttribute('action', $this->url('usuarios',
+            [
+            'action' => 'edit',
+            'id' => $usuarioId
+            ]
+        ));
+        $usuarioForm->prepare();
+        echo $this->form()->openTag($usuarioForm);
+        
+        echo $this->formRow($usuarioForm->get('nome'));
+        echo $this->formRow($usuarioForm->get('email'));
+        echo $this->formRow($usuarioForm->get('senha'));
+        echo $this->formRow($usuarioForm->get('id'));
+
+        
+        echo $this->formSubmit($usuarioForm->get('submit'));
+        echo $this->form()->closeTag();
+    ?>
+</div>

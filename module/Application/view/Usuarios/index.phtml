@@ -1,0 +1,37 @@
+<div class="jumbotron">
+    <h1><span class="zf-green">Usuarios</span></h1>
+    <a href="<?= $this->url('usuarios', ['action' => 'add']) ?>">Add Usuario</a>
+    <table class="table">
+        <tr>
+        <th>Id</th>
+        
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Senha</th>
+
+        <th>Actions</th>
+        
+        </tr>
+        <?php foreach ($usuarioRows as $usuario): ?>
+        <tr>
+            <td><?= $usuario->getId() ?></td>
+            
+            <td><?= $usuario->getNome() ?></td>
+            <td><?= $usuario->getEmail() ?></td>
+            <td><?= $usuario->getSenha() ?></td>
+
+            <td>
+                <a href="<?= $this->url('usuarios', ['action' => 'edit', 'id' => $usuario->getId()]) ?>">Edit</a> |
+                <a href="<?= $this->url('usuarios', ['action' => 'delete', 'id' => $usuario->getId()]) ?>">Remove</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    
+    <?= $this->paginationControl(
+        $usuarioRows,
+        'Sliding',
+        'pagination',
+        ['route' => 'usuarios/paginator']
+    ) ?>
+</div>
